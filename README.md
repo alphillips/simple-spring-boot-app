@@ -20,14 +20,20 @@ This is just for demonstrating the workflow in the presentation [insert demo lin
 git clone https://github.com/alphillips/simple-spring-boot-app.git
 ```
 
+```
+cd simple-spring-boot-app/
+```
+
 Create a branch
 
-git -b feature/expire
+git checkout -b feature
 
 Make the code change. Including a tests
 
-Run the test, runt he app
+Run the test, run the app
 
 Package
+
+mvn package
 
 Spin new environment and deploy.

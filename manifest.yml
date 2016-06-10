@@ -1,0 +1,6 @@
+---
+buildpack: java_buildpack_offline
+memory: 512M
+disk_quota: 1G
+instances: 1
+path: target/demo-0.0.1-SNAPSHOT.jar
