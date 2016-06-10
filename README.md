@@ -6,19 +6,28 @@ This is just for demonstrating the workflow in the presentation [insert demo lin
 
 ## Prerequisites
 
-1. JDK 7 +
+1. Git
 
-2. Maven
+2. JDK 7 +
 
-3. IDE (Eclipse, ItelliJ)
+3. Maven
 
 
 
-Clone the repository
+
+## Clone the repository
 ```
 git clone https://github.com/alphillips/simple-spring-boot-app.git
 ```
 
 Create a branch
 
-Package 
+git -b feature/expire
+
+Make the code change. Including a tests
+
+Run the test, runt he app
+
+Package
+
+Spin new environment and deploy.
