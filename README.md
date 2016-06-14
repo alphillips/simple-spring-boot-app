@@ -16,7 +16,7 @@ For demonstrating the workflow in the presentation [insert demo link]
 
 
 
-## Clone the repository
+Clone the repository
 ```
 git clone https://github.com/alphillips/simple-spring-boot-app.git
 ```
