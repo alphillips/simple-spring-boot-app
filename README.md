@@ -30,7 +30,7 @@ Create a branch
 git checkout -b feature
 ```
 
-Make some code change. Including a tests
+Make some code change. Including tests
 
 Run the tests
 ```
