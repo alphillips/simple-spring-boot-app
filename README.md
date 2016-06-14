@@ -2,7 +2,7 @@
 
 A very simple Spring Boot app
 
-For demonstrating the workflow in the presentation [insert demo link]
+For demonstrating the workflow in the presentation  [Java on cloud.gov.au](https://navy-viper.hyperdev.space)
 
 ## Prerequisites
 
@@ -32,11 +32,20 @@ git checkout -b feature
 
 Make some code change. Including a tests
 
-Run the test, run the app
+Run the tests
+```
+mvn test
+```
 
+For intergration tests, start the app first
 ```
 mvn spring-boot:run
 ```
+Then
+```
+mvn integration-test
+```
+
 When you are ready to deploy, package the app.
 
 ```
