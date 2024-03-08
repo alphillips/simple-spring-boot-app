@@ -1,0 +1,51 @@
+name: simple app
+
+on:
+    pull_request:
+        types:
+          - closed
+        branches:
+          - master
+
+env:
+    AWS_ECR_DOCKER_REGISTRY: 529795807852.dkr.ecr.eu-west-2.amazonaws.com/gha-test
+    SERVICE_NAME: simple-app
+    AWS_REGION: eu-west-2            
+jobs:
+    simple-app:
+        runs-on: ubuntu-22.04
+        steps:
+            - name: Check out code
+              uses: actions/checkout@v4
+              with:
+                fetch-depth: 0
+
+            - name: Bump version and push tag
+              uses: anothrNick/github-tag-action@1.64.0 # Don't use @master or @v1 unless you're happy to test the latest version
+              env:
+                GITHUB_TOKEN: ${{ secrets.BUILD_GITHUB_PAT }} # if you don't want to set write permissions use a PAT token
+                WITH_V: true
+
+            - name: Set outputs
+              id: vars
+              run: |
+                echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+                echo "branch_name=$(echo $GITHUB_REF | sed 's/refs\/heads\///')" >> $GITHUB_OUTPUT
+                echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+                echo "run_number=$GITHUB_RUN_NUMBER" >> $GITHUB_OUTPUT
+            
+            - name: Login to Amazon ECR
+              id: login-ecr
+              uses: aws-actions/amazon-ecr-login@v2
+
+            - name: Build and push
+              uses: docker/build-push-action@v5
+              with:
+                context: api
+                push: true
+                provenance: false
+                cache-from: type=gha
+                cache-to: type=gha,mode=max
+                tags: | 
+                  ${{ env.AWS_ECR_DOCKER_REGISTRY }}/${{ env.SERVICE_NAME }}:${{ steps.semver-tag.outputs.semver_tag }}
+    
