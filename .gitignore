@@ -4,3 +4,5 @@
 .settings/
 .springBeans
 .factorypath
+my.env
+my.secrets
